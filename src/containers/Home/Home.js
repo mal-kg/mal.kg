@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import {Grid} from "@mui/material";
+import {Link} from "react-router-dom";
 
 const Home = () => {
     return (
@@ -10,13 +11,13 @@ const Home = () => {
                     <div className="flexslider">
                         <div className="fh5co-overlay" />
                         <div className="fh5co-text">
-                            <div className="container">
-                                <Grid container>
-                                    <Grid item justifyContent={"space-evenly"} style={{width: '50%'}}>
-                                        <button className="main-btn">Хочу купить</button>
+                            <div >
+                                <Grid container className="container">
+                                    <Grid item  className='box' >
+                                        <Link to="/catalog" className="main-btn">Хочу купить</Link>
                                     </Grid>
-                                    <Grid item  style={{width: '50%'}}>
-                                        <button className="main-btn">Хочу продать</button>
+                                    <Grid item className='box'>
+                                        <Link to="/new" className="main-btn">Хочу продать</Link>
                                     </Grid>
                                 </Grid>
                             </div>
@@ -27,6 +28,9 @@ const Home = () => {
                             <li style={{backgroundImage: 'url(images/sheep.jpg)'}} data-stellar-background-ratio="0.5" />
                         </ul>
                     </div>
+                    <div className='logo-box'>
+                        <img src="images/logo.png" alt="logo" className='logo-img'/>
+                    </div>
                 </div>
                 <div className="js-sticky">
                     <div className="fh5co-main-nav">
@@ -34,14 +38,13 @@ const Home = () => {
                             <div className="fh5co-menu-1">
                                 <a href="#" data-nav-section="home">Главная </a>
                                 <a href="#" data-nav-section="about">Про онлайн-рынок </a>
-                                <a href="#" data-nav-section="features">Услуги</a>
                             </div>
                             <div className="fh5co-logo">
                                 <a href="index.html">Mal.kg</a>
+                                {/*<img src="images/logo.jpeg" alt="logo" className='logo-img'/>*/}
                             </div>
-                            <div className="fh5co-menu-2">
-                                <a href="#" data-nav-section="menu">Отзывы</a>
-                            </div>
+                            {/*<div className="fh5co-menu-2">*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
