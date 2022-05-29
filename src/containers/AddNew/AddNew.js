@@ -5,7 +5,7 @@ import './AddNew.css';
 import FileInput from "../../components/FileInput/FileInput";
 import {useDispatch, useSelector} from "react-redux";
 import {addAnimalRequest} from "../../store/actions/animalsActions";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const AddNew = () => {
     const history = useNavigate();
@@ -70,7 +70,8 @@ const AddNew = () => {
                 <div className="fh5co-main-nav">
                     <div className="container-fluid">
                         <div className="fh5co-menu-1">
-                            <a href="#" data-nav-section="home">Главная </a>
+                            {/*<a href="#" data-nav-section="home">Главная </a>*/}
+                            <Link to={'/'} data-nav-section="home">Главная </Link>
                             <a href="#" data-nav-section="about">Про онлайн-рынок </a>
                         </div>
                         <div className="fh5co-logo">

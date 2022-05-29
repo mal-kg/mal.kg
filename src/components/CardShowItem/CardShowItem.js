@@ -39,7 +39,7 @@ const CardShowItem = ({title, picture, animalId, date, price}) => {
 
 
     return (
-        <Grid item xs={8} sm={6} md={4} lg={2}>
+        <Grid item xs={8} sm={6} md={4} lg={4}>
             <Card className={classes.card}>
                 <CardMedia
                     image={img}
