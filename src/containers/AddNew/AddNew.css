@@ -12,3 +12,14 @@
     background-color: #FBEEC1;
     padding-top: 50px;
 }
+.submit-btn{
+    width: 40%;
+    margin: 10px auto;
+    background-color: #3b3d40;
+    color: whitesmoke;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.submit-btn:hover{
+    color: black;
+    background-color: whitesmoke;
+}

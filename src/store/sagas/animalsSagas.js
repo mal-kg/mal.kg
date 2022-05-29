@@ -1,7 +1,7 @@
 import axiosApi from "../../axiosApi";
 import {toast} from "react-toastify";
 import History from "../../History";
-
+import { useNavigate } from 'react-router-dom'
 import {put, takeEvery} from "redux-saga/effects";
 import {
     addAnimalFailure,
@@ -14,17 +14,19 @@ import {
 
 
 export function* addAnimalSaga({payload}) {
+
     try {
+        console.log(payload)
         yield axiosApi.post( '/animals', payload);
         yield put(addAnimalSuccess());
-        History.push('/');
         toast.success('Ваша информация добавлена');
+
 
     } catch (error) {
         if (!error.response) {
             toast.error(error.message);
         }
-        yield put(addAnimalFailure(error.response.data));
+        yield put(addAnimalFailure(error.response?.data));
     }
 }
 
@@ -54,11 +56,11 @@ export function* getOneSagas({payload}) {
 
 
 
-const buildingSaga = [
+const animalSaga = [
     takeEvery(addAnimalRequest, addAnimalSaga),
     takeEvery(fetchAnimalsRequest, getAnimalsSagas),
     takeEvery(fetchOneAnimalRequest, getOneSagas),
 
 ];
 
-export default buildingSaga;
+export default animalSaga;

@@ -1,10 +1,69 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, Typography} from "@mui/material";
 import FormElement from "../../components/FormElement/FormElement";
 import './AddNew.css';
 import FileInput from "../../components/FileInput/FileInput";
+import {useDispatch, useSelector} from "react-redux";
+import {addAnimalRequest} from "../../store/actions/animalsActions";
+import {useNavigate} from "react-router-dom";
 
 const AddNew = () => {
+    const history = useNavigate();
+    const dispatch = useDispatch();
+    const loading = useSelector(state => state.animals.createLoading);
+    const error = useSelector(state => state.animals.createError);
+
+    const [animal, setAnimal] = useState({
+        description: "",
+        title: "",
+        image: null,
+        vaccine: "",
+        weight:"",
+        age:"",
+        passport:"",
+        price:"",
+    });
+
+    console.log(animal);
+
+
+    const submitFormHandler = e => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        Object.keys(animal).forEach(key => {
+            formData.append(key, animal[key]);
+        });
+
+        dispatch(addAnimalRequest(formData));
+        history('/catalog')
+        // setAnimal({
+        //     description: "",
+        //     title: "",
+        //     image: null,
+        //     vaccine: "",
+        //     weight:"",
+        //     age:"",
+        // })
+    };
+
+    const inputChangeHandler = e => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setAnimal(prevState => {
+            return {...prevState, [name]: value};
+        });
+    };
+
+    const fileChangeHandler = e => {
+        const name = e.target.name;
+        const file = e.target.files[0];
+        setAnimal(prevState => {
+            return {...prevState, [name]: file};
+        });
+    };
+
+
     return (
         <>
             <div className="js-sticky">
@@ -28,33 +87,58 @@ const AddNew = () => {
                 <Grid container direction={"column"} className='form-container'>
                     <FormElement
                         label="Название"
-                        fullWidth="fullWidth"
+                        name='title'
+                        fullWidth
                         xs={6}
                         md={7}
                         lg={10}
+                        onChange={inputChangeHandler}
                     />
                     <FormElement
                         label="Описание"
-                        fullWidth="fullWidth"
+                        name='description'
+                        fullWidth
                         xs={6}
                         md={7}
                         lg={10}
+                        onChange={inputChangeHandler}
                     />
                     <FormElement
                         label="Данные о прививке"
-                        fullWidth="fullWidth"
+                        name={'vaccine'}
+                        fullWidth
                         xs={6}
                         md={7}
                         lg={10}
+                        onChange={inputChangeHandler}
+                    />
+                    <FormElement
+                        label="Паспортные данные"
+                        name={'passport'}
+                        fullWidth
+                        xs={6}
+                        md={7}
+                        lg={10}
+                        onChange={inputChangeHandler}
                     />
                     <Grid item container spacing={2} direction={"row"}>
                         <FormElement
                             label="Вес"
-                            type='number'
+                            name='weight'
+                            type='text'
+                            onChange={inputChangeHandler}
                         />
                         <FormElement
+                            name='age'
                             label="Возраст"
-                            type='number'
+                            type='text'
+                            onChange={inputChangeHandler}
+                        />
+                        <FormElement
+                            name='price'
+                            label="Цена"
+                            type='text'
+                            onChange={inputChangeHandler}
                         />
                         <FormControl variant="outlined" fullWidth>
                             <InputLabel id="demo-controlled-open-select-label">Категория</InputLabel>
@@ -64,7 +148,7 @@ const AddNew = () => {
                                 label="Категория"
                                 name="category"
                                 required
-                                // onChange={inputChangeHandler}
+                                onChange={inputChangeHandler}
                             >
                                 <MenuItem value={'cattle'}>Крупный рогатый скот</MenuItem>
                                 <MenuItem value={'small-cattle'}>Мелкий рогатый скот</MenuItem>
@@ -79,12 +163,13 @@ const AddNew = () => {
                                     name="image"
                                     type="file"
                                     fullWidth
-                                    // onChange={fileChangeAvatarHandler}
+                                    onChange={fileChangeHandler}
                                 />
 
                         </Grid>
 
                     </Grid>
+                    <button onClick={submitFormHandler} className='submit-btn'>Опубликовать</button>
                 </Grid>
             </Container>
         </>
