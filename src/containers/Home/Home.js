@@ -62,7 +62,7 @@ const Home = () => {
                 <div className="container">
                     <div className="row row-padded">
                         <div className="col-md-12 text-center">
-                            <p className="to-animate">© 2016 Foodee Free HTML5 Template. <br /> Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> Demo Images: <a href="http://pexels.com/" target="_blank">Pexels</a> <br /> Tasty Icons Free <a href="http://handdrawngoods.com/store/tasty-icons-free-food-icons/" target="_blank">handdrawngoods</a>
+                            <p className="to-animate">© 2022 Hackathon <br /> Pink Panther <br /> Tumaris.Hack
                             </p>
                             <p className="text-center to-animate"><a href="#" className="js-gotop">Go To Top</a></p>
                         </div>

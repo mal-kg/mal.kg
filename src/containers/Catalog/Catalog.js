@@ -4,6 +4,7 @@ import {fetchAnimalsRequest} from "../../store/actions/animalsActions";
 import {Container, Grid} from "@mui/material";
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 import CardShowItem from "../../components/CardShowItem/CardShowItem";
+import Search from "../Search/Search";
 
 const Catalog = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Catalog = () => {
         <>
             <HeaderComponent/>
             <Container maxWidth="md">
+                <Search/>
                 <Grid container>
                     {animals && animals.map(a=>(
                         <CardShowItem
